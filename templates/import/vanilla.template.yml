@@ -37,7 +37,7 @@ hooks:
     - exec:
         cmd:
           - mkdir -p /shared/import/mysql/data
-          - apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
+          - apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server libmariadbd-dev
           - sed -Ei 's/^log/#&/' /etc/mysql/my.cnf
 
     - file:
