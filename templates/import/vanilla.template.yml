@@ -37,23 +37,7 @@ hooks:
     - exec:
         cmd:
           - mkdir -p /shared/import/mysql/data
-    - exec:
-        cmd:
-          - apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
-    - exec:
-        cmd:
-          - add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.1/ubuntu xenial main'
-    - exec:
-        cmd:
-          - apt-get update
-    - exec:
-        cmd:
-          - DEBIAN_FRONTEND=noninteractive apt-get install -y libmariadb-client-lgpl-dev 
-    - exec:
-        cmd:
-          - DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
-    - exec:
-        cmd:
+          - apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
           - sed -Ei 's/^log/#&/' /etc/mysql/my.cnf
 
     - file:
