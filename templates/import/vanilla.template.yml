@@ -39,6 +39,10 @@ hooks:
           - mkdir -p /shared/import/mysql/data
           - apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server libmariadbd-dev
           - sed -Ei 's/^log/#&/' /etc/mysql/my.cnf
+    - exec:
+        cmd:
+          - mysql -uroot -e "CREATE USER 'discourse'@'localhost';"
+          - mysql -uroot -e "GRANT ALL PRIVILEGES ON * . * TO 'discourse'@'localhost';"
 
     - file:
         path: /etc/service/mysql/run
