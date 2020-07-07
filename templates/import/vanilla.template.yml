@@ -41,6 +41,7 @@ hooks:
           - sed -Ei 's/^log/#&/' /etc/mysql/my.cnf
     - exec:
         cmd:
+          - /etc/init.d/mysql start
           - mysql -uroot -e "CREATE USER 'discourse'@'localhost';"
           - mysql -uroot -e "GRANT ALL PRIVILEGES ON * . * TO 'discourse'@'localhost';"
 
